@@ -6,6 +6,7 @@ use App\User;
 use App\Obat;
 use App\Pasien;
 use App\Antrian;
+use App\Permohonan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,8 @@ class DashboardController extends Controller
         $obat = Obat::all()->count();
         $antrians = Antrian::where('status', 'Ok')->whereDate('tglAntrian', '=', $year.'-'.$month.'-'.$day)->orderBy('tglAntrian', 'ASC')->count();
         $cekrow = Antrian::whereDate('tglAntrian', '=', $year.'-'.$month.'-'.$day)->count();
-        return view('dashboard.index', compact('pasiens', 'obat','antrians', 'cekrow'));
+
+        $row = Permohonan::whereDate('tglPermohonan', '=', $year.'-'.$month.'-'.$day)->count();
+        return view('dashboard.index', compact('pasiens', 'obat','antrians', 'cekrow', 'row'));
     }
 }

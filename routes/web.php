@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $dokter = Dokter::all();
-    return view('welcome', compact('dokter'));
+    return view('welcome');
 });
 
 Route::get('/halaman-antrian', "AntrianController@antrian")->name('halaman-antrian.antrian');
@@ -30,7 +29,7 @@ Route::get('/masuk', "LoginController@index")->name('masuk');
 Route::post('/loginpost', "LoginController@postlogin")->name('loginpost');
 Route::get('/keluar', "LoginController@keluar")->name('keluar');
 
-Route::group(['middleware' => ['auth','ceklevel:admin,dokter,apotek']], function() {
+Route::group(['middleware' => ['auth','ceklevel:admin,dokter,apotek,cs',]], function() {
     Route::get('/dashboard', "DashboardController@index")->name('dashboardadmin');
 
     //Read
