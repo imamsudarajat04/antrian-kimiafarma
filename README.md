@@ -5,3 +5,5 @@
 - JQuery<br>
 - Chart.js<br>
 - AI Co-pilot<br>
+- Data Antrian Realtime<br>
+- Display CS realtime<br>

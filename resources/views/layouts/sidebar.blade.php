@@ -22,12 +22,12 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
+    @if(auth()->user()->level == "admin")
     <!-- Heading -->
     <div class="sidebar-heading">
         BAGIAN PENTING
     </div>
 
-    @if(auth()->user()->level == "admin")
         <!-- Nav Item - Semua Data -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -78,6 +78,12 @@
     @endif
 
     @if (Auth::user()->level == "dokter")
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            BAGIAN PENTING
+        </div>
+
+
         <!-- Nav Item - Semua Data -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -98,7 +104,42 @@
     @endif
 
     @if (Auth::user()->level == "apotek")
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            BAGIAN PENTING
+        </div>
         
+        <!-- Nav Item - Semua Data -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                {{-- <i class="fas fa-fw fa-cog"></i> --}}
+                <i class="fas fa-fw fa-folder"></i>
+                <span>DATA</span>
+            </a>
+            <div id="collapseTwo" class="collapse @yield('main')" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Data Obat:</h6>
+                    <a class="collapse-item @yield('obat')" href="{{ route('obat.index') }}">Obat</a>
+                    <h6 class="collapse-header">Data Permohonan:</h6>
+                    <a class="collapse-item @yield('permohonan')" href="{{ route('permohonan.index') }}">Permohonan</a>
+                </div>
+            </div>
+        </li>
+    @endif
+
+    @if (Auth::user()->level == "cs")
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Tambahan
+        </div>
+
+        <!-- Nav Item - Antrian -->
+        <li class="nav-item @yield('antrian')">
+            <a class="nav-link" href="{{ route('antrian.index') }}">
+                <i class="fas fa-angle-double-right"></i>
+                <span>Antrian</span></a>
+        </li>
     @endif
 
 </ul>
